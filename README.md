@@ -1,7 +1,7 @@
 # Windsurf Training Environment
 
 ## Overview
-This repository contains a Gitpod-based Windsurf environment for training approximately 100 users simultaneously. Each user will have access to a separate container with Windsurf IDE and a preloaded dataset for building dashboards without requiring local installations.
+This repository contains a ready-to-use Windsurf training environment for approximately 100 users simultaneously. Each user gets their own isolated environment with Windsurf pre-loaded and ready to use immediately. No setup or configuration required - just click and start using Windsurf!
 
 ## For Administrators
 
@@ -30,21 +30,25 @@ This repository contains a Gitpod-based Windsurf environment for training approx
 
 ## For Users
 
-### Getting Started
+### Getting Started - One-Click Access
 
-1. **Click the workspace link** provided by your administrator
+1. **Click the link** provided by your administrator
+   - No login or GitHub account required
+   - No installation needed
 
-2. **Wait for the environment to initialize**
-   - The Dockerfile will build automatically
-   - Windsurf will start automatically
+2. **Wait briefly** while your personal environment loads
+   - Everything is pre-configured for you
+   - Windsurf starts automatically
 
-3. **Access the Windsurf IDE**
-   - The IDE will open automatically in your browser
-   - The dataset is preloaded at `/app/data/dataset.csv`
+3. **Start using Windsurf immediately**
+   - The interface opens automatically in your browser
+   - Your dataset is already loaded at `/app/data/dataset.csv`
+   - All tools and features are ready to use
 
-4. **Building Dashboards**
-   - Use Streamlit, Dash, or Plotly for creating visualizations
-   - Example: `streamlit run your_dashboard.py`
+4. **Explore and build dashboards**
+   - Create visualizations with the pre-loaded dataset
+   - Build interactive dashboards
+   - Experiment with different chart types and filters
 
 ### Available Tools
 
