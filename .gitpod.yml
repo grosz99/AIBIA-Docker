@@ -4,8 +4,10 @@ image:
 tasks:
   - name: Setup Windsurf Environment
     init: |
+      # Ensure data directory exists with proper Linux paths
       mkdir -p /workspace/app/data
-      cp /app/data/dataset.csv /workspace/app/data/ || echo "Note: Dataset copy failed, will create sample data"
+      # Copy dataset with error handling (Linux paths)
+      cp -f /app/data/dataset.csv /workspace/app/data/ 2>/dev/null || echo "Note: Dataset copy failed, will create sample data"
       
       # Create a sample dataset if the real one isn't available
       if [ ! -f /workspace/app/data/dataset.csv ]; then
@@ -44,7 +46,7 @@ tasks:
       # Wait for Windsurf to be ready
       sleep 3
       
-      # Open the Windsurf IDE directly in the browser
+      # Open the Windsurf IDE directly in the browser (Linux compatible)
       gp preview --external $(gp url 3000)
 
 ports:
