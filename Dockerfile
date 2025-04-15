@@ -17,23 +17,15 @@ RUN npm config set strict-ssl false
 ENV PYTHONHTTPSVERIFY=0
 RUN pip config set global.trusted-host "pypi.org files.pythonhosted.org"
 
-# Install the official Windsurf IDE with proper error handling
-RUN npm config set registry https://registry.npmjs.org/ && \
-    npm config set strict-ssl false && \
-    npm install -g @windsurf/cli --force && \
-    npm cache clean --force
+# Use our mock Windsurf implementation instead
+COPY windsurf-mock.sh /usr/local/bin/windsurf
+RUN chmod +x /usr/local/bin/windsurf
 
-# Verify Windsurf CLI installation and provide clear status
-RUN windsurf --version && echo "Windsurf IDE successfully installed!" || \
-    echo "Retrying Windsurf IDE installation..." && \
-    npm install -g @windsurf/cli --force
+# Create a simple HTTP server for the training interface
+RUN npm install -g http-server || echo "Warning: http-server installation failed, will use Python's HTTP server instead"
 
-# Ensure Windsurf CLI is properly set up
-RUN which windsurf && chmod +x $(which windsurf) || echo "Windsurf CLI not found at expected location"
-
-# Create Windsurf configuration to ensure immediate startup
-RUN mkdir -p /root/.config/windsurf/ && \
-    echo '{"autoLaunch": true, "preferBrowser": true}' > /root/.config/windsurf/config.json
+# Create a directory for the training interface
+RUN mkdir -p /app/training
 
 # Install dashboard libraries
 RUN pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --default-timeout=100 streamlit dash plotly pandas || echo "Warning: Some packages may not have installed properly" 

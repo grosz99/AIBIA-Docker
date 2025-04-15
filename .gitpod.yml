@@ -35,18 +35,19 @@ tasks:
       
       echo "Windsurf environment is ready for training!"
     command: |
-      echo "Starting Windsurf IDE automatically..."
-      # Ensure latest version of Windsurf CLI
-      npm install -g @windsurf/cli --force
+      echo "Starting Windsurf training environment..."
       
-      # Start the Windsurf IDE and ensure it loads in browser
-      echo "Launching Windsurf IDE..."
-      windsurf launch --prefer-browser &
+      # Use our mock Windsurf implementation instead
+      chmod +x /workspace/windsurf-mock.sh
       
-      # Wait for Windsurf to be ready
+      # Start the mock Windsurf server
+      echo "Launching Windsurf training interface..."
+      /workspace/windsurf-mock.sh start &
+      
+      # Wait for the server to be ready
       sleep 3
       
-      # Open the Windsurf IDE directly in the browser (Linux compatible)
+      # Open the browser with the training interface
       gp preview --external $(gp url 3000)
 
 ports:
