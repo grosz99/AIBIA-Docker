@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: windsurf-portal
+  labels:
+    app: windsurf-portal
+spec:
+  replicas: 2  # For high availability
+  selector:
+    matchLabels:
+      app: windsurf-portal
+  template:
+    metadata:
+      labels:
+        app: windsurf-portal
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:stable
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        volumeMounts:
+        - name: portal-content
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: portal-content
+        configMap:
+          name: portal-content
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: windsurf-portal-service
+spec:
+  selector:
+    app: windsurf-portal
+  ports:
+  - port: 80
+    targetPort: 80
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: windsurf-portal-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: portal.windsurf-training.example.com  # Replace with your actual domain
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: windsurf-portal-service
+            port:
+              number: 80

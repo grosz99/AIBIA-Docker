@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dataset-config
+data:
+  # This is a placeholder. In a real deployment, you would:
+  # 1. Either reference an existing PVC with the dataset
+  # 2. Or load the dataset into the ConfigMap (for small datasets)
+  # 3. Or use a shared storage solution like NFS
+  # For now, we'll create a placeholder that will be replaced with the actual dataset
+  dataset.csv: |
+    # This will be replaced with the actual dataset content
+    # For large datasets, use a PersistentVolume instead

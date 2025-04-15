@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:v2.9
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080" # Traefik dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - windsurf-network
+
+  portal:
+    build:
+      context: ./portal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portal.rule=Host(`portal.localhost`)"
+      - "traefik.http.routers.portal.entrypoints=web"
+      - "traefik.http.services.portal.loadbalancer.server.port=80"
+    networks:
+      - windsurf-network
+
+  # This is a template service that will be duplicated for each user
+  # In production, you would dynamically create these containers
+  windsurf-template:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.windsurf-template.rule=Host(`user-template.localhost`)"
+      - "traefik.http.routers.windsurf-template.entrypoints=web"
+      - "traefik.http.services.windsurf-template.loadbalancer.server.port=8501"
+    volumes:
+      - ./data:/app/data
+    networks:
+      - windsurf-network
+
+networks:
+  windsurf-network:
+    driver: bridge

@@ -1,0 +1,10 @@
+
+
+## Objective
+Provide a browser-based Windsurf environment for approximately 100 users, each preloaded with a specific dataset, enabling them to build dashboards without local installations.
+
+## Architecture
+- **Platform:** Gitpod
+- **IDE:** Windsurf
+- **Isolation:** Each user operates in a separate container
+- **Data:** Preloaded dataset located at /app/data/dataset.csv

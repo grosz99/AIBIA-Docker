@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: windsurf-training
+  labels:
+    app: windsurf-training
+spec:
+  replicas: 100  # One pod per user
+  selector:
+    matchLabels:
+      app: windsurf-training
+  template:
+    metadata:
+      labels:
+        app: windsurf-training
+    spec:
+      containers:
+      - name: windsurf
+        image: windsurf-training:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8501
+          name: streamlit
+        - containerPort: 3000
+          name: windsurf
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+      volumes:
+      - name: data-volume
+        configMap:
+          name: dataset-config

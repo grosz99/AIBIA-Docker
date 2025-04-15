@@ -1,0 +1,67 @@
+services:
+  windsurf-1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+    - traefik.enable=true
+    - traefik.http.routers.windsurf-1.rule=Host(`user-1.localhost`)
+    - traefik.http.routers.windsurf-1.entrypoints=web
+    - traefik.http.services.windsurf-1.loadbalancer.server.port=8501
+    networks:
+    - windsurf-network
+    volumes:
+    - ./data:/app/data
+  windsurf-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+    - traefik.enable=true
+    - traefik.http.routers.windsurf-2.rule=Host(`user-2.localhost`)
+    - traefik.http.routers.windsurf-2.entrypoints=web
+    - traefik.http.services.windsurf-2.loadbalancer.server.port=8501
+    networks:
+    - windsurf-network
+    volumes:
+    - ./data:/app/data
+  windsurf-3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+    - traefik.enable=true
+    - traefik.http.routers.windsurf-3.rule=Host(`user-3.localhost`)
+    - traefik.http.routers.windsurf-3.entrypoints=web
+    - traefik.http.services.windsurf-3.loadbalancer.server.port=8501
+    networks:
+    - windsurf-network
+    volumes:
+    - ./data:/app/data
+  windsurf-4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+    - traefik.enable=true
+    - traefik.http.routers.windsurf-4.rule=Host(`user-4.localhost`)
+    - traefik.http.routers.windsurf-4.entrypoints=web
+    - traefik.http.services.windsurf-4.loadbalancer.server.port=8501
+    networks:
+    - windsurf-network
+    volumes:
+    - ./data:/app/data
+  windsurf-5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    labels:
+    - traefik.enable=true
+    - traefik.http.routers.windsurf-5.rule=Host(`user-5.localhost`)
+    - traefik.http.routers.windsurf-5.entrypoints=web
+    - traefik.http.services.windsurf-5.loadbalancer.server.port=8501
+    networks:
+    - windsurf-network
+    volumes:
+    - ./data:/app/data
+version: '3.8'

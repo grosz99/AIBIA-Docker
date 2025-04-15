@@ -1,0 +1,11 @@
+image:
+  file: Dockerfile
+
+tasks:
+  - name: Setup Environment
+    init: echo "Environment is ready."
+
+ports:
+  - port: 8501
+    onOpen: open-preview
+    visibility: public

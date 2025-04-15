@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: windsurf-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: windsurf-training.example.com  # Replace with your actual domain
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: windsurf-service
+            port:
+              number: 8501

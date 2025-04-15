@@ -1,0 +1,29 @@
+# Base image with Python and Node.js
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install OS-level dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    git \
+    nodejs \
+    npm \
+    && apt-get clean
+
+# Install Windsurf CLI
+RUN npm install -g @windsurf/cli
+
+# Install dashboard libraries
+RUN pip install streamlit dash plotly pandas
+
+# Create data directory and add dataset
+RUN mkdir -p /app/data
+COPY data/dataset.csv /app/data/dataset.csv
+
+# Expose default Streamlit port
+EXPOSE 8501
+
+# Default command
+CMD ["bash"]

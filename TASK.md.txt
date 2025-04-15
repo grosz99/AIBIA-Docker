@@ -1,0 +1,10 @@
+
+## Active Tasks
+- [ ] Build and test Dockerfile with Windsurf and dependencies
+- [ ] Configure Gitpod workspace with .gitpod.yml
+- [ ] Upload dataset.csv to the data directory
+- [ ] Share Gitpod workspace link with users
+
+## Backlog
+- [ ] Implement authentication for workspace access
+- [ ] Monitor resource usage and scale as needed
