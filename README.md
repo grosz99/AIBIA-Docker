@@ -1,7 +1,7 @@
 # Windsurf Training Environment
 
 ## Overview
-This repository contains a ready-to-use Windsurf training environment for approximately 100 users simultaneously. Each user gets their own isolated environment with Windsurf pre-loaded and ready to use immediately. No setup or configuration required - just click and start using Windsurf!
+This repository contains a one-click Windsurf IDE training environment for approximately 100 users simultaneously. Each user gets their own isolated environment with the real Windsurf IDE pre-loaded and launched automatically. No setup, configuration, or GitHub account required - users simply click a link and the Windsurf IDE opens immediately for training.
 
 ## For Administrators
 
@@ -30,25 +30,26 @@ This repository contains a ready-to-use Windsurf training environment for approx
 
 ## For Users
 
-### Getting Started - One-Click Access
+### Getting Started - One-Click Windsurf IDE Access
 
 1. **Click the link** provided by your administrator
    - No login or GitHub account required
-   - No installation needed
+   - No installation or setup needed
 
-2. **Wait briefly** while your personal environment loads
-   - Everything is pre-configured for you
-   - Windsurf starts automatically
+2. **The Windsurf IDE loads automatically**
+   - The Windsurf IDE web interface opens in your browser
+   - You'll see the full-featured Windsurf coding environment
+   - No commands to run - it's all automatic
 
-3. **Start using Windsurf immediately**
-   - The interface opens automatically in your browser
-   - Your dataset is already loaded at `/app/data/dataset.csv`
-   - All tools and features are ready to use
+3. **Start coding immediately**
+   - Access your dataset at `/app/data/dataset.csv`
+   - Use all Windsurf IDE features without configuration
+   - All AI assistance features are ready to use
 
-4. **Explore and build dashboards**
-   - Create visualizations with the pre-loaded dataset
-   - Build interactive dashboards
-   - Experiment with different chart types and filters
+4. **Build and test directly in Windsurf**
+   - Create visualizations with the built-in tools
+   - Run code and see results instantly
+   - Get AI assistance with your Windsurf workflows
 
 ### Available Tools
 

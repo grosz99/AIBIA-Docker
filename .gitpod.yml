@@ -33,9 +33,19 @@ tasks:
       
       echo "Windsurf environment is ready for training!"
     command: |
-      echo "Starting Windsurf automatically..."
-      # Start Windsurf in the background
-      windsurf start &
+      echo "Starting Windsurf IDE automatically..."
+      # Ensure latest version of Windsurf CLI
+      npm install -g @windsurf/cli --force
+      
+      # Start the Windsurf IDE and ensure it loads in browser
+      echo "Launching Windsurf IDE..."
+      windsurf launch --prefer-browser &
+      
+      # Wait for Windsurf to be ready
+      sleep 3
+      
+      # Open the Windsurf IDE directly in the browser
+      gp preview --external $(gp url 3000)
 
 ports:
   - port: 3000

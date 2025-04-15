@@ -30,16 +30,17 @@ git push -u origin main
 3. Create a new workspace from your repository
 4. Gitpod will automatically build the Docker image and start the environment
 
-### 3. Test the Environment
+### 3. Verify One-Click Windsurf IDE Access
 
 Once the Gitpod workspace is running:
 
-```bash
-# Run the environment test script
-python test_environment.py
+1. Verify that the Windsurf IDE loads automatically in the browser
+2. Confirm that users do not need to run any commands to start Windsurf
+3. Test that the dataset is properly loaded at `/app/data/dataset.csv`
 
-# Start the sample dashboard
-streamlit run sample_dashboard.py
+```bash
+# If needed, you can manually launch Windsurf with:
+windsurf launch --prefer-browser
 ```
 
 ## Scaling for 100 Users
